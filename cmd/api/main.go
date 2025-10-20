@@ -6,5 +6,6 @@ import (
 
 func main() {
 	db.Connect()
+	db.ExecutarMigrations()
 
 }
