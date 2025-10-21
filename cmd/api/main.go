@@ -2,10 +2,16 @@ package main
 
 import (
 	"github.com/stacoviaki/api-mave/db"
+	"github.com/stacoviaki/api-mave/internal/router"
 )
 
 func main() {
-	db.Connect()
+	//Conexão com o banco de dados
+	db.ConnectDB()
+
+	//Função que executa as migrações no banco
 	db.ExecutarMigrations()
 
+	//Inicializa GIN e as rotas presentes na api
+	router.Routes()
 }
