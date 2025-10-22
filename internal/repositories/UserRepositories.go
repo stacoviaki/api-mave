@@ -97,3 +97,16 @@ func (us *UserRepositories) CreateUser(user models.User) (uuid.UUID, error) {
 	query.Close()
 	return id, nil
 }
+
+func (us *UserRepositories) DeleteUser(id uuid.UUID) (uuid.UUID, error) {
+	var deletedID uuid.UUID
+
+	query := `DELETE FROM users WHERE id = $1 RETURNING id;`
+	err := us.connection.QueryRow(query, id).Scan(&deletedID)
+	if err != nil {
+		fmt.Println("Erro ao deletar usuário:", err)
+		return uuid.Nil, err
+	}
+
+	return deletedID, nil
+}

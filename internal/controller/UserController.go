@@ -73,3 +73,33 @@ func (u *userController) CreateUser(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusCreated, insertedUser)
 }
+
+func (u *userController) DeleteUser(ctx *gin.Context) {
+	idParam := ctx.Param("userId")
+
+	// Tenta converter o parâmetro para UUID
+	idUUID, err := uuid.Parse(idParam)
+	if err != nil {
+		response := models.Response{
+			Message: "ID do Usuário precisa ser um UUID válido",
+		}
+		ctx.JSON(http.StatusBadRequest, response)
+		return
+	}
+
+	//deleta o usuário
+	deletedID, err := u.userUseCase.DeleteUser(idUUID)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Erro ao deletar usuário",
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	// Retorna resposta de sucesso
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "Usuário deletado com sucesso",
+		"id":      deletedID,
+	})
+}

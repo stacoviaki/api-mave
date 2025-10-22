@@ -36,3 +36,11 @@ func (us *UserUseCase) CreateUser(user models.User) (models.User, error) {
 	user.ID = userId
 	return user, nil
 }
+
+func (us *UserUseCase) DeleteUser(id_user uuid.UUID) (uuid.UUID, error) {
+	deletedID, err := us.repositories.DeleteUser(id_user)
+	if err != nil {
+		return uuid.Nil, err
+	}
+	return deletedID, nil
+}
