@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/stacoviaki/api-mave/db"
 	"github.com/stacoviaki/api-mave/internal/controller"
@@ -10,6 +11,7 @@ import (
 
 func Routes() {
 	server := gin.Default()
+	server.Use(cors.Default())
 
 	dbConnection, err := db.ConnectDB()
 	if err != nil {
@@ -30,6 +32,7 @@ func Routes() {
 	server.GET("/users", UserController.GetUsers)
 	server.GET("/user/:userId", UserController.GetUserById)
 	server.POST("/user", UserController.CreateUser)
+	server.PUT("/users/:userId", UserController.UpdateUser)
 	server.DELETE("/user/:userId", UserController.DeleteUser)
 
 	server.Run(":9000")
