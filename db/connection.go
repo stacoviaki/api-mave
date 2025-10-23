@@ -26,6 +26,6 @@ func ConnectDB() (*sql.DB, error) {
 		log.Fatalf("Erro ao conectar ao banco: %v", err)
 	}
 
-	fmt.Println("✅ Conectado ao PostgreSQL!")
+	fmt.Printf("\n✅ Conectado ao PostgreSQL!\n")
 	return db, nil
 }

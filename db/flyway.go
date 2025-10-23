@@ -17,5 +17,5 @@ func ExecutarMigrations() {
 	}
 
 	fmt.Println(string(resp))
-	fmt.Println("Migrations Finalizadas")
+	fmt.Printf("\n✅ Migrations Finalizadas\n")
 }
