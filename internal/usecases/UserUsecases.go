@@ -4,6 +4,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stacoviaki/api-mave/internal/models"
 	"github.com/stacoviaki/api-mave/internal/repositories"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // 🔹 UserUseCase
@@ -44,13 +45,19 @@ func (us *UserUseCase) GetUserById(id_user uuid.UUID) (*models.User, error) {
 // Atualiza os dados de um usuário existente.
 // Recebe o UUID e o novo objeto de usuário, e retorna o usuário atualizado.
 func (us *UserUseCase) UpdateUser(id_user uuid.UUID, updatedUser models.User) (*models.User, error) {
-	// Chama a função de UPDATE no repositório
+	// gerar hash se a senha foi fornecida
+	if updatedUser.PasswordHash != "" {
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(updatedUser.PasswordHash), bcrypt.DefaultCost)
+		if err != nil {
+			return nil, err
+		}
+		updatedUser.PasswordHash = string(hashedPassword)
+	}
+
 	user, err := us.repositories.UpdateUser(id_user, updatedUser)
 	if err != nil {
 		return nil, err
 	}
-
-	// Retorna o usuário já atualizado
 	return user, nil
 }
 
@@ -58,13 +65,19 @@ func (us *UserUseCase) UpdateUser(id_user uuid.UUID, updatedUser models.User) (*
 // Cria um novo usuário no banco de dados.
 // Primeiro insere no repositório, depois adiciona o ID retornado ao struct.
 func (us *UserUseCase) CreateUser(user models.User) (models.User, error) {
-	// Cria o usuário no banco e recebe o UUID gerado automaticamente
+	// gerar hash da senha antes de salvar
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.PasswordHash), bcrypt.DefaultCost)
+	if err != nil {
+		return models.User{}, err
+	}
+	user.PasswordHash = string(hashedPassword) // substitui a senha em texto pelo hash
+
+	// cria o usuário no banco e recebe o UUID gerado
 	userId, err := us.repositories.CreateUser(user)
 	if err != nil {
 		return models.User{}, err
 	}
 
-	// Adiciona o ID ao struct e retorna
 	user.ID = userId
 	return user, nil
 }
