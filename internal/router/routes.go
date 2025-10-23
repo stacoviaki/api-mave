@@ -32,7 +32,7 @@ func Routes() {
 	server.GET("/users", UserController.GetUsers)
 	server.GET("/user/:userId", UserController.GetUserById)
 	server.POST("/user", UserController.CreateUser)
-	server.PUT("/users/:userId", UserController.UpdateUser)
+	server.PUT("/user/:userId", UserController.UpdateUser)
 	server.DELETE("/user/:userId", UserController.DeleteUser)
 
 	server.Run(":9000")
