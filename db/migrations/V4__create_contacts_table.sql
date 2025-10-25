@@ -13,7 +13,7 @@ CREATE TABLE contacts (
     cpf VARCHAR(14),
     rg VARCHAR(20),
     cnpj VARCHAR(18),
-    foreign_id VARCHAR(50),
+    foreing_id VARCHAR(50),
     state_registration VARCHAR(20),
     municipal_registration VARCHAR(20),
 
