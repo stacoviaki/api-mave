@@ -7,31 +7,31 @@ import (
 )
 
 type Contact struct {
-	ID                    uuid.UUID `json:"id"`                     // Identificador único (UUID)
-	ContactType           string    `json:"contact_type"`           // Tipo de contato ((individual)CPF ou (company)CNPJ)
-	FullName              string    `json:"full_name"`              // Nome completo (pessoa física)
-	TradeName             string    `json:"trade_name"`             // Nome fantasia (empresa)
-	CompanyName           string    `json:"company_name"`           // Razão social (empresa)
-	Cpf                   string    `json:"cpf"`                    // CPF
-	Rg                    string    `json:"rg"`                     // RG
-	Cnpj                  string    `json:"cnpj"`                   // CNPJ
-	ForeingID             string    `json:"foreing_id"`             // ID estrangeiro (se aplicável)
-	StateRegistration     string    `json:"state_registration"`     // Inscrição estadual
-	MunicipalRegistration string    `json:"municipal_registration"` // Inscrição municipal
-	PostalCode            string    `json:"postal_code"`            // CEP
-	Street                string    `json:"street"`                 // Rua
-	Number                string    `json:"number"`                 // Número
-	Complement            string    `json:"complement"`             // Complemento
-	District              string    `json:"district"`               // Bairro
-	City                  string    `json:"city"`                   // Cidade
-	State                 string    `json:"state"`                  // Estado
-	CountryID             int       `json:"country_id"`             // Código do país (DDD ou ID do país)
-	Phone                 string    `json:"phone"`                  // Telefone fixo
-	Mobile                string    `json:"mobile"`                 // Celular
-	Email                 string    `json:"email"`                  // E-mail
-	Website               string    `json:"website"`                // Site
-	JobTitle              string    `json:"job_title"`              // Cargo
-	Tags                  string    `json:"tags"`                   // Tags de classificação
-	CreatedAt             time.Time `json:"created_at"`
-	UpdatedAt             time.Time `json:"updated_at"`
+	ID                    uuid.UUID `json:"id"`                               // Identificador único (UUID)
+	ContactType           string    `json:"contact_type"`                     // Tipo de contato ((individual)CPF) ou (company)CNPJ)
+	FullName              *string   `json:"full_name,omitempty"`              // Nome completo (pessoa física)
+	TradeName             *string   `json:"trade_name,omitempty"`             // Nome fantasia (empresa)
+	CompanyName           *string   `json:"company_name,omitempty"`           // Razão social (empresa)
+	Cpf                   *string   `json:"cpf,omitempty"`                    // CPF
+	Rg                    *string   `json:"rg,omitempty"`                     // RG
+	Cnpj                  *string   `json:"cnpj,omitempty"`                   // CNPJ
+	ForeingID             *string   `json:"foreing_id,omitempty"`             // ID estrangeiro (se aplicável)
+	StateRegistration     *string   `json:"state_registration,omitempty"`     // Inscrição estadual
+	MunicipalRegistration *string   `json:"municipal_registration,omitempty"` // Inscrição municipal
+	PostalCode            *string   `json:"postal_code,omitempty"`            // CEP
+	Street                *string   `json:"street,omitempty"`                 // Rua
+	Number                *string   `json:"number,omitempty"`                 // Número
+	Complement            *string   `json:"complement,omitempty"`             // Complemento
+	District              *string   `json:"district,omitempty"`               // Bairro
+	City                  *string   `json:"city,omitempty"`                   // Cidade
+	State                 *string   `json:"state,omitempty"`                  // Estado
+	CountryID             *int      `json:"country_id,omitempty"`             // Código do país (DDD ou ID do país)
+	Phone                 *string   `json:"phone,omitempty"`                  // Telefone fixo
+	Mobile                *string   `json:"mobile,omitempty"`                 // Celular
+	Email                 *string   `json:"email,omitempty"`                  // E-mail
+	Website               *string   `json:"website,omitempty"`                // Site
+	JobTitle              *string   `json:"job_title,omitempty"`              // Cargo
+	Tags                  *string   `json:"tags,omitempty"`                   // Tags de classificação
+	CreatedAt             time.Time `json:"created_at,omitempty"`
+	UpdatedAt             time.Time `json:"updated_at,omitempty"`
 }

@@ -10,7 +10,7 @@ func main() {
 	db.ConnectDB()
 
 	//Função que executa as migrações no banco
-	db.ExecutarMigrations()
+	db.ExecMigrations()
 
 	//Inicializa GIN e as rotas presentes na api
 	router.Routes()

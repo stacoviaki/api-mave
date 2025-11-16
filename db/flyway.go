@@ -6,7 +6,7 @@ import (
 	"os/exec"
 )
 
-func ExecutarMigrations() {
+func ExecMigrations() {
 	fmt.Println("Iniciando Migrations")
 	cmd := exec.Command("flyway", "migrate", "-configFiles=/home/doss/projects/api-mave/db/flyway.conf")
 	resp, err := cmd.CombinedOutput()

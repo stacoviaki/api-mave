@@ -136,7 +136,7 @@ func (co *contactController) DeleteContact(ctx *gin.Context) {
 	}
 
 	// Chama o usecase pra deletar o contato.
-	deletedID, err := co.contactUseCase.DeleteUser(idUUID)
+	deletedID, err := co.contactUseCase.DeleteContact(idUUID)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Erro ao deletar contato",

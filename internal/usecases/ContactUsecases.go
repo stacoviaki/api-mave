@@ -23,7 +23,7 @@ func NewContactUseCase(repo repositories.ContactRepositories) ContactUseCase {
 }
 
 // 🔹 GetContact
-// Retorna todos os c contatosadastrados.
+// Retorna todos os contatos cadastrados.
 // Apenas repassa a chamada para o repositório, sem regras extras.
 func (co *ContactUseCase) GetContacts() ([]models.Contact, error) {
 	return co.repositories.GetContacts()
@@ -68,7 +68,7 @@ func (co *ContactUseCase) UpdateContact(id_contact uuid.UUID, updatedContact mod
 // 🔹 DeleteContact
 // Exclui um usuário do banco com base no UUID.
 // Retorna o ID deletado em caso de sucesso.
-func (co *ContactUseCase) DeleteUser(id_contact uuid.UUID) (uuid.UUID, error) {
+func (co *ContactUseCase) DeleteContact(id_contact uuid.UUID) (uuid.UUID, error) {
 	deletedID, err := co.repositories.DeleteContact(id_contact)
 	if err != nil {
 		return uuid.Nil, err

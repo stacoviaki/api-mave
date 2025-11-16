@@ -46,5 +46,19 @@ func Routes() {
 	server.PUT("/contact/:contactId", ContactController.UpdateContact)
 	server.DELETE("/contact/:contactId", ContactController.DeleteContact)
 
+	// Products
+	// Camada de Repositories
+	ProductRepositories := repositories.NewProductRepositories(dbConnection)
+	// Camada de Usecase
+	ProductUsecase := usecases.NewProductUseCase(ProductRepositories)
+	// Camada de Controller
+	ProductController := controller.NewProductController(ProductUsecase)
+	// Chamadas (Endpoints)
+	server.GET("/products", ProductController.GetProducts)
+	server.GET("/product/:productId", ProductController.GetProductById)
+	server.POST("/product", ProductController.CreateProduct)
+	server.PUT("/product/:productId", ProductController.UpdateProduct)
+	server.DELETE("/product/:productId", ProductController.DeleteProduct)
+
 	server.Run(":9000")
 }

@@ -1,0 +1,5 @@
+CREATE TABLE nbm (
+    id SERIAL PRIMARY KEY,
+    nbm_code VARCHAR(20) NOT NULL,
+    nbm_name VARCHAR(255) NOT NULL
+)

@@ -1,0 +1,5 @@
+CREATE TABLE ncm (
+    id SERIAL PRIMARY KEY,
+    ncm_code VARCHAR(20) NOT NULL,
+    ncm_name VARCHAR(2000) NOT NULL
+);
